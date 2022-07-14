@@ -19,9 +19,8 @@ export async function verifToken(token: string[], res: Response): Promise<string
       return JSON.stringify(decodedToken)
     }
   }
-  catch (e: any) {
-    console.log(e.message)
-    if (e.message === 'jwt expired') {
+  catch (error: any) {
+    if (error.message === 'jwt expired') {
       res.status(StatusCodes.UNAUTHORIZED).json({
         statusCode: StatusCodes.UNAUTHORIZED,
         message: "jwt expired"

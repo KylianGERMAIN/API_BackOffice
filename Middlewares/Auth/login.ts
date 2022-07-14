@@ -4,7 +4,7 @@ import {
   StatusCodes,
 } from 'http-status-codes';
 import { pool } from '../../Function/Utils/database';
-import { generateTokens } from '../../Function/Utils/generateToken';
+import { generateRefreshAcccesTokens } from '../../Function/Utils/generateToken';
 import { rowIsVoid } from '../../Function/Utils/simpleCondition';
 import { Users } from '../../Types/User';
 const bcrypt = require('bcrypt');
@@ -18,7 +18,7 @@ export async function comparePassword(req: Request, res: Response, user: any) {
       });
     }
     else {
-      res.status(StatusCodes.OK).json(generateTokens(user));
+      res.status(StatusCodes.OK).json(generateRefreshAcccesTokens(user));
     }
   })
 }

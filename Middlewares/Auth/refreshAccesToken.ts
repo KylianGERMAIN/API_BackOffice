@@ -8,13 +8,20 @@ const bcrypt = require('bcrypt');
 
 
 export async function refreshAccesToken(req: Request, res: Response) {
-  var token = JSON.parse((await verifToken(req.headers.authorization!.split(" "), res)).toString())
-  if (token != 'error') {
-    console.log(token)
-    var user = {
-      id: token.payload.id,
-      email: token.payload.email
+  try {
+    var token = JSON.parse((await verifToken(req.headers.authorization!.split(" "), res)).toString())
+    if (token != 'error') {
+      var user = {
+        id: token.payload.id,
+        email: token.payload.email
+      }
+      res.status(StatusCodes.CREATED).json(generateAccesToken(user));
     }
-    res.status(StatusCodes.CREATED).json(generateAccesToken(user));
+  }
+  catch (error) {
+    res.status(StatusCodes.UNAUTHORIZED).json({
+      statusCode: StatusCodes.UNAUTHORIZED,
+      message: "jwt not found"
+    });
   }
 }

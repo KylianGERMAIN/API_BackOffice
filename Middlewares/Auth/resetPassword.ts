@@ -14,7 +14,6 @@ dotenv.config();
 function remplacePassword(password: string, token: any, res: Response) {
   pool.query(`UPDATE public.users SET password = '${password}' WHERE id = '${token.payload.id}'`, (error: any, results: { rows: any; }) => {
     if (error) {
-      console.log(error)
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
         message: ReasonPhrases.INTERNAL_SERVER_ERROR + 'dd'
@@ -41,7 +40,6 @@ function hashPassword(password: string, token: any, res: Response) {
       });
       return
     }
-    console.log(password)
     bcrypt.hash(password, salt, async function (err: any, hash: any) {
       if (err) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -61,7 +59,6 @@ export async function resetPassword(req: Request, res: Response) {
   if (token != 'error') {
     await pool.query(`SELECT * FROM Public.users WHERE id = '${token.payload.id}'`, (error: any, results: { rows: any; }) => {
       if (error) {
-        console.log(error)
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message: ReasonPhrases.INTERNAL_SERVER_ERROR
