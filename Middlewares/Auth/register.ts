@@ -4,7 +4,7 @@ import {
   StatusCodes,
 } from 'http-status-codes';
 import { pool } from '../../Function/Utils/database';
-import { generateTokens } from '../../Function/Utils/generateToken';
+import { generateRefreshAcccesTokens } from '../../Function/Utils/generateToken';
 import { rowIsVoid } from '../../Function/Utils/simpleCondition';
 import { Users } from '../../Types/User';
 const bcrypt = require('bcrypt');
@@ -45,7 +45,7 @@ function hashPassword(user: Users, res: Response) {
       }
       user.password = hash
       if (await addUserToDb(user, res) === true) {
-        res.status(StatusCodes.CREATED).json(generateTokens(user));
+        res.status(StatusCodes.CREATED).json(generateRefreshAcccesTokens(user));
       }
     });
   });

@@ -10,12 +10,22 @@ export function generateRefreshToken(username: any) {
 }
 
 
-export function generateTokens(user: any) {
+export function generateRefreshAcccesTokens(user: any) {
   var accesstoken = generateAccessToken({ email: user.email, id: user.id });
   var refreshtoken = generateRefreshToken({ email: user.email, id: user.id })
 
   return {
     'refreshToken': refreshtoken,
+    'accessToken': accesstoken,
+    'expires_in': '1800s',
+    'tokenType': 'Bearer'
+  }
+}
+
+export function generateAccesToken(user: any) {
+  var accesstoken = generateAccessToken({ email: user.email, id: user.id });
+
+  return {
     'accessToken': accesstoken,
     'expires_in': '1800s',
     'tokenType': 'Bearer'
