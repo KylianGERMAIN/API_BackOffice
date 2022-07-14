@@ -24,8 +24,7 @@ function addUserToDb(user: Users, res: Response) {
   return true
 }
 
-function hash_password(user: Users, res: Response) {
-
+function hashPassword(user: Users, res: Response) {
   const saltRounds = 15;
 
   bcrypt.genSalt(saltRounds, function (err: any, salt: any) {
@@ -60,8 +59,6 @@ export async function register(req: Request, res: Response) {
     password: req.body.password,
     date: Date.now().toString()
   }
-
-  console.log(req.body)
   await pool.query(`SELECT * FROM Public.users WHERE email like '${user.email}'`, (error: any, results: { rows: any; }) => {
     if (error) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
@@ -71,7 +68,7 @@ export async function register(req: Request, res: Response) {
     }
     else {
       if (rowIsVoid(results.rows) === true) {
-        hash_password(user, res)
+        hashPassword(user, res)
       } else {
         res.status(StatusCodes.FORBIDDEN).json({
           statusCode: StatusCodes.FORBIDDEN,

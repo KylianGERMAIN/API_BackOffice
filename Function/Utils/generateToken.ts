@@ -10,9 +10,9 @@ export function generateRefreshToken(username: any) {
 }
 
 
-export function generateTokens(User: any) {
-  var accesstoken = generateAccessToken({ email: User.email, password: User.password });
-  var refreshtoken = generateRefreshToken({ email: User.email, password: User.empasswordail })
+export function generateTokens(user: any) {
+  var accesstoken = generateAccessToken({ email: user.email, id: user.id });
+  var refreshtoken = generateRefreshToken({ email: user.email, id: user.id })
 
   return {
     'refreshToken': refreshtoken,

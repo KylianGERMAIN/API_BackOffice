@@ -1,3 +1,5 @@
+import login from "./login";
 import register from "./register";
+import resetPassword from "./resetPassword";
 
-export { register }
+export { register, login, resetPassword }
