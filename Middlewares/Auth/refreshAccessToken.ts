@@ -7,7 +7,7 @@ import { verifToken } from '../../Function/Utils/verifToken';
 const bcrypt = require('bcrypt');
 
 
-export async function refreshAccesToken(req: Request, res: Response) {
+export async function refreshAccessToken(req: Request, res: Response) {
   try {
     var token = JSON.parse((await verifToken(req.headers.authorization!.split(" "), res)).toString())
     if (token != 'error') {
@@ -15,13 +15,13 @@ export async function refreshAccesToken(req: Request, res: Response) {
         id: token.payload.id,
         email: token.payload.email
       }
-      res.status(StatusCodes.CREATED).json(generateAccesToken(user));
+      res.status(StatusCodes.OK).json(generateAccesToken(user));
     }
   }
   catch (error) {
     res.status(StatusCodes.UNAUTHORIZED).json({
       statusCode: StatusCodes.UNAUTHORIZED,
-      message: "jwt not found"
+      message: StatusCodes.UNAUTHORIZED + "jwt not found"
     });
   }
 }

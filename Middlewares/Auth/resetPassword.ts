@@ -16,7 +16,7 @@ function remplacePassword(password: string, token: any, res: Response) {
     if (error) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        message: ReasonPhrases.INTERNAL_SERVER_ERROR + 'dd'
+        message: ReasonPhrases.INTERNAL_SERVER_ERROR
       });
     }
     else {

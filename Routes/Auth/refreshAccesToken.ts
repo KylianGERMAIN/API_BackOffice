@@ -3,15 +3,15 @@ import { checkSchema } from "express-validator";
 import { checkEmail } from "../../Function/checkParams/checkEmail";
 import { checkPassword } from "../../Function/checkParams/checkPassword";
 import { checkValidator, createRouteFromRoutes } from "../../Function/Utils/createRoutes";
-import { refreshAccesToken } from "../../Middlewares/Auth/refreshAccesToken";
+import { refreshAccessToken } from "../../Middlewares/Auth/refreshAccessToken";
 
 const routes = [
   {
     type: "get",
-    route: "/refreshAccesToken",
+    route: "/refreshAccessToken",
     middlewares: [checkSchema({
     }), checkValidator()],
-    next: refreshAccesToken
+    next: refreshAccessToken
   }
 ]
 
