@@ -7,8 +7,9 @@ import {
 const jwt = require('jsonwebtoken');
 dotenv.config();
 
-export async function verifToken(token: string[], res: Response): Promise<string> {
+export async function verifToken(authorization: any, res: Response): Promise<string> {
   try {
+    var token = authorization.split(" ")
     if (token[0] != 'Bearer')
       throw ({ message: 'jwt invalid' });
     else {

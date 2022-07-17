@@ -55,7 +55,7 @@ function hashPassword(password: string, token: any, res: Response) {
 
 export async function resetPassword(req: Request, res: Response) {
 
-  var token = JSON.parse((await verifToken(req.headers.authorization!.split(" "), res)).toString())
+  var token = JSON.parse((await verifToken(req.headers.authorization, res)).toString())
   if (token != 'error') {
     await pool.query(`SELECT * FROM Public.users WHERE id = '${token.payload.id}'`, (error: any, results: { rows: any; }) => {
       if (error) {

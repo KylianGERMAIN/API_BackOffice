@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import { register, login, resetPassword, refreshAccessToken } from './Routes/Auth';
+import createArticle from './Routes/Articles/createArticle';
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ async function startServer() {
   app.use(cors());
 
   app.use("/auth", register, login, resetPassword, refreshAccessToken)
+  app.use("/articles", createArticle)
 
   app.listen(process.env.PORT, () => {
     console.log(`[API_BackOffice]: Server is running at http://localhost:${process.env.PORT}`);
@@ -22,13 +24,6 @@ async function startServer() {
   app.get('/', (req: Request, res: Response) => {
     res.send("/");
   });
-
-  // app.post('/api/decode', (req: Request, res: Response) => {
-  //   const bcrypt = require('bcrypt');
-  //   bcrypt.compare(req.body.actualpassword, req.body.passwordcrypt, function (err: any, result: any) {
-  //     res.send("Compared result " + result)
-  //   })
-  // })
 
 }
 
