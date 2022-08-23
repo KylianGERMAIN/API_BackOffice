@@ -6,7 +6,7 @@ import {
 import { pool } from '../../Function/Utils/database';
 import { generateRefreshAcccesTokens } from '../../Function/Utils/generateToken';
 import { rowIsVoid } from '../../Function/Utils/simpleCondition';
-import { Users } from '../../Types/User';
+import { User } from '../../Interfaces/User';
 const bcrypt = require('bcrypt');
 
 export async function comparePassword(req: Request, res: Response, user: any) {
