@@ -14,7 +14,7 @@ function addUserToDb(user: User, res: Response) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message:
-            ReasonPhrases.INTERNAL_SERVER_ERROR +
+            StatusCodes.INTERNAL_SERVER_ERROR +
             " an error was detected when adding the user to the database",
         });
         return false;
@@ -33,7 +33,7 @@ function hashPassword(user: User, res: Response) {
       res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
         statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
         message:
-          ReasonPhrases.INTERNAL_SERVER_ERROR +
+          StatusCodes.INTERNAL_SERVER_ERROR +
           " error while generating the salt",
       });
       return;
@@ -43,7 +43,7 @@ function hashPassword(user: User, res: Response) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message:
-            ReasonPhrases.INTERNAL_SERVER_ERROR +
+            StatusCodes.INTERNAL_SERVER_ERROR +
             " error while generating the salt",
         });
         return;
@@ -70,7 +70,7 @@ export async function register(req: Request, res: Response) {
       if (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+          message: StatusCodes.INTERNAL_SERVER_ERROR,
         });
       } else {
         if (rowIsVoid(results.rows) === true) {

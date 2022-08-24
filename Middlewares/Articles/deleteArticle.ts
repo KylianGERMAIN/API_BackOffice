@@ -14,7 +14,7 @@ function checkArticleToDb(id: String, user_id: String, res: Response) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message:
-            ReasonPhrases.INTERNAL_SERVER_ERROR +
+            StatusCodes.INTERNAL_SERVER_ERROR +
             " an error was detected when checking the article to the database",
         });
       } else {
@@ -41,7 +41,7 @@ function deleteArticleToDb(id: String, res: Response) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message:
-            ReasonPhrases.INTERNAL_SERVER_ERROR +
+            StatusCodes.INTERNAL_SERVER_ERROR +
             " an error was detected when deleting the article to the database",
         });
       } else {

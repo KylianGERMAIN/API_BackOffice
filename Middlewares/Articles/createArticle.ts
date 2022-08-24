@@ -14,7 +14,7 @@ function addArticleToDb(article: Article, res: Response) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message:
-            ReasonPhrases.INTERNAL_SERVER_ERROR +
+            StatusCodes.INTERNAL_SERVER_ERROR +
             " an error was detected when creating the article to the database",
         });
       } else {
