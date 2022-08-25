@@ -70,9 +70,9 @@ export async function resetPassword(req: Request, res: Response) {
           });
         } else {
           if (rowIsVoid(results.rows) === true) {
-            res.status(StatusCodes.FORBIDDEN).json({
-              statusCode: StatusCodes.FORBIDDEN,
-              message: ReasonPhrases.FORBIDDEN + " User not found",
+            res.status(StatusCodes.NOT_FOUND).json({
+              statusCode: StatusCodes.NOT_FOUND,
+              message: ReasonPhrases.NOT_FOUND + " User not found",
             });
           } else {
             hashPassword(req.body.password, token, res);

@@ -10,6 +10,7 @@ import {
 } from "./Routes/Auth";
 import createArticle from "./Routes/Articles/createArticle";
 import deleteArticle from "./Routes/Articles/deleteArticle";
+import deleteAccount from "./Routes/Auth/deleteAccount";
 
 dotenv.config();
 
@@ -19,7 +20,14 @@ async function startServer() {
   app.use(bodyParser.json());
   app.use(cors());
 
-  app.use("/auth", register, login, resetPassword, refreshAccessToken);
+  app.use(
+    "/auth",
+    register,
+    login,
+    resetPassword,
+    refreshAccessToken,
+    deleteAccount
+  );
   app.use("/articles", createArticle, deleteArticle);
 
   app.listen(process.env.PORT, () => {

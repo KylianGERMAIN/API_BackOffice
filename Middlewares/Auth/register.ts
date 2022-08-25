@@ -8,7 +8,7 @@ const bcrypt = require("bcrypt");
 
 function addUserToDb(user: User, res: Response) {
   pool.query(
-    `INSERT INTO public.users("id", "email", "password", "date") VALUES('${user.uid}', '${user.email}', '${user.password}', '${user.date}}')`,
+    `INSERT INTO public.users("id", "email", "password", "date") VALUES('${user.uid}', '${user.email}', '${user.password}', '${user.date}')`,
     (error: any) => {
       if (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({

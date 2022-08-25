@@ -7,7 +7,7 @@ import { Article } from "../../Interfaces/Articles";
 function addArticleToDb(article: Article, res: Response) {
   console.log(article);
   pool.query(
-    `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.uid}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}}')`,
+    `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.uid}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
     (error: any) => {
       if (error) {
         console.log(error);
