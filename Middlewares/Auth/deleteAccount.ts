@@ -83,9 +83,9 @@ export async function deleteAccount(req: Request, res: Response) {
       }
     }
   } catch (error) {
-    res.status(StatusCodes.UNAUTHORIZED).json({
-      statusCode: StatusCodes.UNAUTHORIZED,
-      message: StatusCodes.UNAUTHORIZED + " jwt not found",
+    res.status(StatusCodes.NOT_FOUND).json({
+      statusCode: StatusCodes.NOT_FOUND,
+      message: StatusCodes.NOT_FOUND + " jwt not found",
     });
   }
 }

@@ -11,6 +11,7 @@ import {
 import createArticle from "./Routes/Articles/createArticle";
 import deleteArticle from "./Routes/Articles/deleteArticle";
 import deleteAccount from "./Routes/Auth/deleteAccount";
+import getArticles from "./Routes/Articles/getArticles";
 
 dotenv.config();
 
@@ -28,7 +29,7 @@ async function startServer() {
     refreshAccessToken,
     deleteAccount
   );
-  app.use("/articles", createArticle, deleteArticle);
+  app.use("/articles", createArticle, deleteArticle, getArticles);
 
   app.listen(process.env.PORT, () => {
     console.log(
