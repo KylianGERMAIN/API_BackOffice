@@ -70,7 +70,7 @@ export async function register(req: Request, res: Response) {
       if (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR,
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         if (rowIsVoid(results.rows) === true) {

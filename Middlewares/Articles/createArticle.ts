@@ -13,9 +13,7 @@ function addArticleToDb(article: Article, res: Response) {
         console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message:
-            StatusCodes.INTERNAL_SERVER_ERROR +
-            " an error was detected when creating the article to the database",
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         res.status(StatusCodes.OK).json({
@@ -28,20 +26,26 @@ function addArticleToDb(article: Article, res: Response) {
 }
 
 export async function createArticle(req: Request, res: Response) {
-  var uuid = require("uuid");
-
-  var token = JSON.parse(
-    (await verifToken(req.headers.authorization, res)).toString()
-  );
-  if (token != "error") {
-    console.log(token);
-    const article: Article = {
-      uid: uuid.v4(),
-      user_id: token.payload.id,
-      title: req.body.title,
-      content: req.body.content,
-      date: Date.now().toString(),
-    };
-    addArticleToDb(article, res);
+  try {
+    var uuid = require("uuid");
+    var token = JSON.parse(
+      (await verifToken(req.headers.authorization, res)).toString()
+    );
+    if (token != "error") {
+      console.log(token);
+      const article: Article = {
+        uid: uuid.v4(),
+        user_id: token.payload.id,
+        title: req.body.title,
+        content: req.body.content,
+        date: Date.now().toString(),
+      };
+      addArticleToDb(article, res);
+    }
+  } catch (error) {
+    res.status(StatusCodes.NOT_FOUND).json({
+      statusCode: StatusCodes.NOT_FOUND,
+      message: StatusCodes.NOT_FOUND + "jwt not found",
+    });
   }
 }

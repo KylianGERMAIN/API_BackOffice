@@ -15,7 +15,7 @@ function remplacePassword(password: string, token: any, res: Response) {
       if (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR,
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         res.status(StatusCodes.OK).json({
@@ -56,29 +56,37 @@ function hashPassword(password: string, token: any, res: Response) {
 }
 
 export async function resetPassword(req: Request, res: Response) {
-  var token = JSON.parse(
-    (await verifToken(req.headers.authorization, res)).toString()
-  );
-  if (token != "error") {
-    await pool.query(
-      `SELECT * FROM Public.users WHERE id = '${token.payload.id}'`,
-      (error: any, results: { rows: any }) => {
-        if (error) {
-          res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-            message: StatusCodes.INTERNAL_SERVER_ERROR,
-          });
-        } else {
-          if (rowIsVoid(results.rows) === true) {
-            res.status(StatusCodes.NOT_FOUND).json({
-              statusCode: StatusCodes.NOT_FOUND,
-              message: ReasonPhrases.NOT_FOUND + " User not found",
+  try {
+    var token = JSON.parse(
+      (await verifToken(req.headers.authorization, res)).toString()
+    );
+    if (token != "error") {
+      await pool.query(
+        `SELECT * FROM Public.users WHERE id = '${token.payload.id}'`,
+        (error: any, results: { rows: any }) => {
+          if (error) {
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+              statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+              message:
+                StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
             });
           } else {
-            hashPassword(req.body.password, token, res);
+            if (rowIsVoid(results.rows) === true) {
+              res.status(StatusCodes.NOT_FOUND).json({
+                statusCode: StatusCodes.NOT_FOUND,
+                message: ReasonPhrases.NOT_FOUND + " User not found",
+              });
+            } else {
+              hashPassword(req.body.password, token, res);
+            }
           }
         }
-      }
-    );
+      );
+    }
+  } catch (error) {
+    res.status(StatusCodes.NOT_FOUND).json({
+      statusCode: StatusCodes.NOT_FOUND,
+      message: StatusCodes.NOT_FOUND + "jwt not found",
+    });
   }
 }

@@ -13,9 +13,7 @@ function checkArticleToDb(id: String, user_id: String, res: Response) {
         console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message:
-            StatusCodes.INTERNAL_SERVER_ERROR +
-            " an error was detected when checking the article to the database",
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         if (rowIsVoid(results.rows) === true) {
@@ -40,9 +38,7 @@ function deleteArticleToDb(id: String, res: Response) {
         console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message:
-            StatusCodes.INTERNAL_SERVER_ERROR +
-            " an error was detected when deleting the article to the database",
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         res.status(StatusCodes.OK).json({
@@ -55,11 +51,18 @@ function deleteArticleToDb(id: String, res: Response) {
 }
 
 export async function deleteArticle(req: Request, res: Response) {
-  var token = JSON.parse(
-    (await verifToken(req.headers.authorization, res)).toString()
-  );
-  console.log(req.body.id);
-  if (token != "error") {
-    checkArticleToDb(req.body.id, token.payload.id, res);
+  try {
+    var token = JSON.parse(
+      (await verifToken(req.headers.authorization, res)).toString()
+    );
+    console.log(req.body.id);
+    if (token != "error") {
+      checkArticleToDb(req.body.id, token.payload.id, res);
+    }
+  } catch (error) {
+    res.status(StatusCodes.NOT_FOUND).json({
+      statusCode: StatusCodes.NOT_FOUND,
+      message: StatusCodes.NOT_FOUND + "jwt not found",
+    });
   }
 }

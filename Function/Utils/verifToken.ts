@@ -23,14 +23,14 @@ export async function verifToken(
     if (error.message === "jwt expired") {
       res.status(StatusCodes.UNAUTHORIZED).json({
         statusCode: StatusCodes.UNAUTHORIZED,
-        message: "jwt expired",
+        message: StatusCodes.UNAUTHORIZED + " jwt expired",
       });
       return "error";
     } else {
       console.log(error);
       res.status(StatusCodes.UNAUTHORIZED).json({
         statusCode: StatusCodes.UNAUTHORIZED,
-        message: "jwt invalid",
+        message: StatusCodes.UNAUTHORIZED + " jwt invalid",
       });
       return "error";
     }

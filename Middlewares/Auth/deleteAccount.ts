@@ -13,7 +13,7 @@ export async function deleteAccountToDb(req: Request, res: Response) {
       if (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR,
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         res.status(StatusCodes.OK).json({
@@ -49,7 +49,7 @@ export async function checkMailToDb(req: Request, res: Response) {
       if (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR,
+          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
         });
       } else {
         if (rowIsVoid(results.rows) === true) {
