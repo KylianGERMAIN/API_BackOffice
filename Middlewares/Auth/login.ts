@@ -14,7 +14,7 @@ export async function comparePassword(req: Request, res: Response, user: any) {
       if (result === false) {
         res.status(StatusCodes.FORBIDDEN).json({
           statusCode: StatusCodes.FORBIDDEN,
-          message: "Badpassword",
+          message: StatusCodes.FORBIDDEN + " Badpassword",
         });
       } else {
         res.status(StatusCodes.OK).json(generateRefreshAcccesTokens(user));
