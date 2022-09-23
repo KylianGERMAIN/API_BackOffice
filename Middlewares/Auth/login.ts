@@ -14,7 +14,7 @@ export async function comparePassword(req: Request, res: Response, user: any) {
       if (result === false) {
         res.status(StatusCodes.FORBIDDEN).json({
           statusCode: StatusCodes.FORBIDDEN,
-          message: StatusCodes.FORBIDDEN + " Badpassword",
+          message: StatusCodes.FORBIDDEN + " badpassword",
         });
       } else {
         res.status(StatusCodes.OK).json(generateRefreshAcccesTokens(user));
@@ -36,7 +36,7 @@ export async function login(req: Request, res: Response) {
         if (rowIsVoid(results.rows) === true) {
           res.status(StatusCodes.NOT_FOUND).json({
             statusCode: StatusCodes.NOT_FOUND,
-            message: ReasonPhrases.NOT_FOUND + " User not found",
+            message: ReasonPhrases.NOT_FOUND + " user not found",
           });
         } else {
           comparePassword(req, res, results.rows[0]);

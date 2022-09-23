@@ -25,17 +25,9 @@ export async function getArticlesToDb(req: Request, res: Response, id: string) {
 }
 
 export async function getArticles(req: Request, res: Response) {
-  try {
-    var token = JSON.parse(
-      (await verifToken(req.headers.authorization, res)).toString()
-    );
-    if (token != "error") {
-      getArticlesToDb(req, res, token.payload.id);
-    }
-  } catch (error) {
-    res.status(StatusCodes.NOT_FOUND).json({
-      statusCode: StatusCodes.NOT_FOUND,
-      message: StatusCodes.NOT_FOUND + "jwt not found",
-    });
+  var element = await verifToken(req.headers.authorization, res);
+  var token = await JSON.parse(element);
+  if (element != '{ "error": "error" }') {
+    getArticlesToDb(req, res, token.payload.id);
   }
 }

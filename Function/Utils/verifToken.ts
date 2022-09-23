@@ -8,16 +8,24 @@ dotenv.config();
 export async function verifToken(
   authorization: any,
   res: Response
-): Promise<string> {
+): Promise<any> {
   try {
-    var token = authorization.split(" ");
-    if (token[0] != "Bearer") throw { message: "jwt invalid" };
-    else {
-      jwt.verify(token[1], process.env.TOKEN_SECRET);
-      const decodedToken = jwt.decode(token[1], {
-        complete: true,
+    if (authorization != undefined) {
+      var token = authorization.split(" ");
+      if (token[0] != "Bearer") throw { message: "jwt invalid" };
+      else {
+        jwt.verify(token[1], process.env.TOKEN_SECRET);
+        const decodedToken = jwt.decode(token[1], {
+          complete: true,
+        });
+        return JSON.stringify(decodedToken);
+      }
+    } else {
+      res.status(StatusCodes.NOT_FOUND).json({
+        statusCode: StatusCodes.NOT_FOUND,
+        message: StatusCodes.NOT_FOUND + " jwt not found",
       });
-      return JSON.stringify(decodedToken);
+      return '{ "error": "error" }';
     }
   } catch (error: any) {
     if (error.message === "jwt expired") {
@@ -25,14 +33,14 @@ export async function verifToken(
         statusCode: StatusCodes.UNAUTHORIZED,
         message: StatusCodes.UNAUTHORIZED + " jwt expired",
       });
-      return "error";
+      return '{ "error": "error" }';
     } else {
       console.log(error);
       res.status(StatusCodes.UNAUTHORIZED).json({
         statusCode: StatusCodes.UNAUTHORIZED,
         message: StatusCodes.UNAUTHORIZED + " jwt invalid",
       });
-      return "error";
+      return '{ "error": "error" }';
     }
   }
 }

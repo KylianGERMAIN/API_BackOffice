@@ -1,3 +1,4 @@
+import { json } from "body-parser";
 import express, { Express, Request, Response } from "express";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { pool } from "../../Function/Utils/database";
@@ -33,7 +34,7 @@ export async function comparePassword(req: Request, res: Response, user: any) {
       if (result === false) {
         res.status(StatusCodes.FORBIDDEN).json({
           statusCode: StatusCodes.FORBIDDEN,
-          message: ReasonPhrases.FORBIDDEN + " Badpassword",
+          message: StatusCodes.FORBIDDEN + " badpassword",
         });
       } else {
         deleteAccountToDb(req, res);
@@ -55,7 +56,7 @@ export async function checkMailToDb(req: Request, res: Response) {
         if (rowIsVoid(results.rows) === true) {
           res.status(StatusCodes.NOT_FOUND).json({
             statusCode: StatusCodes.NOT_FOUND,
-            message: ReasonPhrases.NOT_FOUND + " User not found",
+            message: ReasonPhrases.NOT_FOUND + " user not found",
           });
         } else {
           comparePassword(req, res, results.rows[0]);
@@ -66,26 +67,18 @@ export async function checkMailToDb(req: Request, res: Response) {
 }
 
 export async function deleteAccount(req: Request, res: Response) {
-  try {
-    var token = JSON.parse(
-      (await verifToken(req.headers.authorization, res)).toString()
-    );
-    if (token != "error") {
-      if (token.payload.email != req.body.email) {
-        res.status(StatusCodes.UNAUTHORIZED).json({
-          statusCode: StatusCodes.UNAUTHORIZED,
-          message:
-            StatusCodes.UNAUTHORIZED +
-            " you are trying to delete an account that is not yours",
-        });
-      } else {
-        checkMailToDb(req, res);
-      }
+  var element = await verifToken(req.headers.authorization, res);
+  var token = await JSON.parse(element);
+  if (element != '{ "error": "error" }') {
+    if (token.payload.email != req.body.email) {
+      res.status(StatusCodes.UNAUTHORIZED).json({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        message:
+          StatusCodes.UNAUTHORIZED +
+          " you are trying to delete an account that is not yours",
+      });
+    } else {
+      checkMailToDb(req, res);
     }
-  } catch (error) {
-    res.status(StatusCodes.NOT_FOUND).json({
-      statusCode: StatusCodes.NOT_FOUND,
-      message: StatusCodes.NOT_FOUND + " jwt not found",
-    });
   }
 }

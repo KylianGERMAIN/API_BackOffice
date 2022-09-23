@@ -26,12 +26,11 @@ function addArticleToDb(article: Article, res: Response) {
 }
 
 export async function createArticle(req: Request, res: Response) {
-  try {
+
     var uuid = require("uuid");
-    var token = JSON.parse(
-      (await verifToken(req.headers.authorization, res)).toString()
-    );
-    if (token != "error") {
+    var element = await verifToken(req.headers.authorization, res);
+    var token = await JSON.parse(element);
+    if (element != '{ "error": "error" }') {
       console.log(token);
       const article: Article = {
         uid: uuid.v4(),
@@ -42,10 +41,4 @@ export async function createArticle(req: Request, res: Response) {
       };
       addArticleToDb(article, res);
     }
-  } catch (error) {
-    res.status(StatusCodes.NOT_FOUND).json({
-      statusCode: StatusCodes.NOT_FOUND,
-      message: StatusCodes.NOT_FOUND + "jwt not found",
-    });
-  }
 }

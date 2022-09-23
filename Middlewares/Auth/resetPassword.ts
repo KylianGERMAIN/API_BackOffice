@@ -56,37 +56,30 @@ function hashPassword(password: string, token: any, res: Response) {
 }
 
 export async function resetPassword(req: Request, res: Response) {
-  try {
-    var token = JSON.parse(
-      (await verifToken(req.headers.authorization, res)).toString()
-    );
-    if (token != "error") {
-      await pool.query(
-        `SELECT * FROM Public.users WHERE id = '${token.payload.id}'`,
-        (error: any, results: { rows: any }) => {
-          if (error) {
-            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-              statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-              message:
-                StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
+  var element = await verifToken(req.headers.authorization, res);
+  var token = await JSON.parse(element);
+  if (element != '{ "error": "error" }') {
+    await pool.query(
+      `SELECT * FROM Public.users WHERE id = '${token.payload.id}'`,
+      (error: any, results: { rows: any }) => {
+        if (error) {
+          res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+            message:
+              StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
+          });
+        } else {
+          if (rowIsVoid(results.rows) === true) {
+            res.status(StatusCodes.NOT_FOUND).json({
+              statusCode: StatusCodes.NOT_FOUND,
+              message: ReasonPhrases.NOT_FOUND + " User not found",
             });
           } else {
-            if (rowIsVoid(results.rows) === true) {
-              res.status(StatusCodes.NOT_FOUND).json({
-                statusCode: StatusCodes.NOT_FOUND,
-                message: ReasonPhrases.NOT_FOUND + " User not found",
-              });
-            } else {
-              hashPassword(req.body.password, token, res);
-            }
+            hashPassword(req.body.password, token, res);
           }
         }
-      );
-    }
-  } catch (error) {
-    res.status(StatusCodes.NOT_FOUND).json({
-      statusCode: StatusCodes.NOT_FOUND,
-      message: StatusCodes.NOT_FOUND + "jwt not found",
-    });
+      }
+    );
   }
+
 }

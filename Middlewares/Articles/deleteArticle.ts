@@ -51,18 +51,10 @@ function deleteArticleToDb(id: String, res: Response) {
 }
 
 export async function deleteArticle(req: Request, res: Response) {
-  try {
-    var token = JSON.parse(
-      (await verifToken(req.headers.authorization, res)).toString()
-    );
-    console.log(req.body.id);
-    if (token != "error") {
-      checkArticleToDb(req.body.id, token.payload.id, res);
-    }
-  } catch (error) {
-    res.status(StatusCodes.NOT_FOUND).json({
-      statusCode: StatusCodes.NOT_FOUND,
-      message: StatusCodes.NOT_FOUND + "jwt not found",
-    });
+  var element = await verifToken(req.headers.authorization, res);
+  var token = await JSON.parse(element);
+  if (element != '{ "error": "error" }') {
+    checkArticleToDb(req.body.id, token.payload.id, res);
   }
+
 }

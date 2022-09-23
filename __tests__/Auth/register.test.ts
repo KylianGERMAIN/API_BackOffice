@@ -39,7 +39,7 @@ describe("REGISTER", () => {
       .end((err: any, res: any) => {
         if (err) return done(err);
         expect(res._body.statusCode).toEqual(403);
-        expect(res._body.message).toMatch("403 Your email already exists");
+        expect(res._body.message).toMatch("403 your email already exists");
         done();
       });
   });

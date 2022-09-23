@@ -27,7 +27,7 @@ describe("LOGIN", () => {
       .end((err: any, res: any) => {
         if (err) return done(err);
         expect(res._body.statusCode).toEqual(403);
-        expect(res._body.message).toMatch("403 Badpassword");
+        expect(res._body.message).toMatch("403 badpassword");
         done();
       });
   });

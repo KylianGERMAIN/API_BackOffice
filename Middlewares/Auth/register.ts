@@ -78,7 +78,7 @@ export async function register(req: Request, res: Response) {
         } else {
           res.status(StatusCodes.FORBIDDEN).json({
             statusCode: StatusCodes.FORBIDDEN,
-            message: StatusCodes.FORBIDDEN + " Your email already exists",
+            message: StatusCodes.FORBIDDEN + " your email already exists",
           });
         }
       }
