@@ -5,12 +5,10 @@ import { verifToken } from "../../Function/Utils/verifToken";
 import { Article } from "../../Interfaces/Articles";
 
 function addArticleToDb(article: Article, res: Response) {
-  console.log(article);
   pool.query(
     `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.uid}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
     (error: any) => {
       if (error) {
-        console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
@@ -19,6 +17,7 @@ function addArticleToDb(article: Article, res: Response) {
         res.status(StatusCodes.OK).json({
           statusCode: StatusCodes.OK,
           message: ReasonPhrases.OK,
+          id: article.uid,
         });
       }
     }
@@ -26,19 +25,17 @@ function addArticleToDb(article: Article, res: Response) {
 }
 
 export async function createArticle(req: Request, res: Response) {
-
-    var uuid = require("uuid");
-    var element = await verifToken(req.headers.authorization, res);
-    var token = await JSON.parse(element);
-    if (element != '{ "error": "error" }') {
-      console.log(token);
-      const article: Article = {
-        uid: uuid.v4(),
-        user_id: token.payload.id,
-        title: req.body.title,
-        content: req.body.content,
-        date: Date.now().toString(),
-      };
-      addArticleToDb(article, res);
-    }
+  var uuid = require("uuid");
+  var element = await verifToken(req.headers.authorization, res);
+  var token = await JSON.parse(element);
+  if (element != '{ "error": "error" }') {
+    const article: Article = {
+      uid: uuid.v4(),
+      user_id: token.payload.id,
+      title: req.body.title,
+      content: req.body.content,
+      date: Date.now().toString(),
+    };
+    addArticleToDb(article, res);
+  }
 }

@@ -35,7 +35,6 @@ export async function verifToken(
       });
       return '{ "error": "error" }';
     } else {
-      console.log(error);
       res.status(StatusCodes.UNAUTHORIZED).json({
         statusCode: StatusCodes.UNAUTHORIZED,
         message: StatusCodes.UNAUTHORIZED + " jwt invalid",

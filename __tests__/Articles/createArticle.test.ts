@@ -1,23 +1,24 @@
 import request from "supertest";
 import app from "../../app";
 
-describe("RESET PASSWORD", () => {
-  test("reset password simply", (done) => {
+describe("CREATE ARTICLE", () => {
+  test("create article simply", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/createArticle`)
       .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
       .send({
-        password: "jadore_krakow",
+        title: "Krakow",
+        content: "Krakow est une ville incroyable",
       })
       .end((err: any, res: any) => {
         if (err) return done(err);
         expect(res._body.statusCode).toEqual(200);
         expect(res._body.message).toMatch("OK");
         request(app)
-          .post(`/auth/resetpassword`)
+          .post(`/articles/deleteArticle`)
           .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
           .send({
-            password: process.env.PASSWORD_LOGIN_TEST,
+            id: res._body.id,
           })
           .end((err: any, ress: any) => {
             if (err) return done(err);
@@ -28,22 +29,40 @@ describe("RESET PASSWORD", () => {
       });
   });
 
-  test("reset password with nothing", (done) => {
+  test("create article with no content", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/createArticle`)
+      .send({
+        title: "Krakow",
+      })
       .end((err: any, res: any) => {
         if (err) return done(err);
         expect(res.statusCode).toEqual(500);
-        expect(res._body.errors[0].msg).toMatch("Password is missing");
+        expect(res._body.errors[0].msg).toMatch("Content is missing");
         done();
       });
   });
 
-  test("reset password with no header", (done) => {
+  test("create article with no title", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/createArticle`)
       .send({
-        password: process.env.PASSWORD_LOGIN_TEST,
+        content: "Krakow est une ville incroyable",
+      })
+      .end((err: any, res: any) => {
+        if (err) return done(err);
+        expect(res.statusCode).toEqual(500);
+        expect(res._body.errors[0].msg).toMatch("Title is missing");
+        done();
+      });
+  });
+
+  test("create article with no token", (done) => {
+    request(app)
+      .post(`/articles/createArticle`)
+      .send({
+        title: "Krakow",
+        content: "Krakow est une ville incroyable",
       })
       .end((err: any, res: any) => {
         if (err) return done(err);
@@ -53,12 +72,13 @@ describe("RESET PASSWORD", () => {
       });
   });
 
-  test("reset password with expired token", (done) => {
+  test("create article with expired token", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/createArticle`)
       .set("Authorization", "Bearer " + process.env.EXPIRED_LOGIN_TOKEN)
       .send({
-        password: process.env.PASSWORD_LOGIN_TEST,
+        title: "Krakow",
+        content: "Krakow est une ville incroyable",
       })
       .end((err: any, res: any) => {
         if (err) return done(err);

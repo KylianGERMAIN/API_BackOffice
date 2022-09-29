@@ -10,7 +10,6 @@ function checkArticleToDb(id: String, user_id: String, res: Response) {
     `SELECT * FROM Public.articles WHERE id = '${id}' AND user_id = '${user_id}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
@@ -30,12 +29,10 @@ function checkArticleToDb(id: String, user_id: String, res: Response) {
 }
 
 function deleteArticleToDb(id: String, res: Response) {
-  console.log(id);
   pool.query(
     `DELETE FROM public.articles WHERE "id" = '${id}'`,
     (error: any) => {
       if (error) {
-        console.log(error);
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
           statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
           message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",

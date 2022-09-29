@@ -1,23 +1,24 @@
 import request from "supertest";
 import app from "../../app";
 
-describe("RESET PASSWORD", () => {
-  test("reset password simply", (done) => {
+describe("DELETE ARTICLES", () => {
+  test("delete simply", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/createArticle`)
       .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
       .send({
-        password: "jadore_krakow",
+        title: "Krakow delete",
+        content: "Krakow est une ville incroyable delete",
       })
       .end((err: any, res: any) => {
         if (err) return done(err);
         expect(res._body.statusCode).toEqual(200);
         expect(res._body.message).toMatch("OK");
         request(app)
-          .post(`/auth/resetpassword`)
+          .post(`/articles/deleteArticle`)
           .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
           .send({
-            password: process.env.PASSWORD_LOGIN_TEST,
+            id: res._body.id,
           })
           .end((err: any, ress: any) => {
             if (err) return done(err);
@@ -28,37 +29,23 @@ describe("RESET PASSWORD", () => {
       });
   });
 
-  test("reset password with nothing", (done) => {
+  test("delete article with nothing", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/deleteArticle`)
       .end((err: any, res: any) => {
         if (err) return done(err);
+        expect(res._body.errors[0].msg).toMatch("Id is missing");
         expect(res.statusCode).toEqual(500);
-        expect(res._body.errors[0].msg).toMatch("Password is missing");
         done();
       });
   });
 
-  test("reset password with no header", (done) => {
+  test("delete article with expired token", (done) => {
     request(app)
-      .post(`/auth/resetpassword`)
-      .send({
-        password: process.env.PASSWORD_LOGIN_TEST,
-      })
-      .end((err: any, res: any) => {
-        if (err) return done(err);
-        expect(res._body.statusCode).toEqual(404);
-        expect(res._body.message).toMatch("404 jwt not found");
-        done();
-      });
-  });
-
-  test("reset password with expired token", (done) => {
-    request(app)
-      .post(`/auth/resetpassword`)
+      .post(`/articles/deleteArticle`)
       .set("Authorization", "Bearer " + process.env.EXPIRED_LOGIN_TOKEN)
       .send({
-        password: process.env.PASSWORD_LOGIN_TEST,
+        id: "a2b82f42-4013-11ed-b878-0242ac120002",
       })
       .end((err: any, res: any) => {
         if (err) return done(err);

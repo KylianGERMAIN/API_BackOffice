@@ -16,7 +16,6 @@ const routes = [
     route: "/createArticle",
     middlewares: [
       checkSchema({
-        email: checkEmail,
         title: checkTitle,
         content: checkContent,
       }),
