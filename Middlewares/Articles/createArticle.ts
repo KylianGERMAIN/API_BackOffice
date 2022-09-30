@@ -1,5 +1,6 @@
 import express, { Express, Request, Response } from "express";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
 import { pool } from "../../Function/Utils/database";
 import { verifToken } from "../../Function/Utils/verifToken";
 import { Article } from "../../Interfaces/Articles";
@@ -9,10 +10,7 @@ function addArticleToDb(article: Article, res: Response) {
     `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.uid}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
     (error: any) => {
       if (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
-        });
+        responseErrorDetectDb(res);
       } else {
         res.status(StatusCodes.OK).json({
           statusCode: StatusCodes.OK,

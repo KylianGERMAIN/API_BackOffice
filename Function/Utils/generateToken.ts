@@ -2,11 +2,15 @@
 const jwt = require('jsonwebtoken');
 
 export function generateAccessToken(username: any) {
-  return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+  return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: "1800s",
+  });
 }
 
 export function generateRefreshToken(username: any) {
-  return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: '2y' });
+  return jwt.sign(username, process.env.REFRESH_TOKEN_SECRET, {
+    expiresIn: "2y",
+  });
 }
 
 

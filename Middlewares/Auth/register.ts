@@ -1,5 +1,11 @@
 import express, { Express, Request, Response } from "express";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
+import {
+  responseEmailAlreadyExist,
+  responseErrorWhileGeneratingToken,
+  responseErrorWhileHashingToken,
+} from "../../Function/Response/responseUser";
 import { pool } from "../../Function/Utils/database";
 import { generateRefreshAcccesTokens } from "../../Function/Utils/generateToken";
 import { rowIsVoid } from "../../Function/Utils/simpleCondition";
@@ -11,12 +17,7 @@ function addUserToDb(user: User, res: Response) {
     `INSERT INTO public.users("id", "email", "password", "date") VALUES('${user.uid}', '${user.email}', '${user.password}', '${user.date}')`,
     (error: any) => {
       if (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message:
-            StatusCodes.INTERNAL_SERVER_ERROR +
-            " an error was detected when adding the user to the database",
-        });
+        responseErrorDetectDb(res);
         return false;
       }
       return true;
@@ -30,22 +31,12 @@ function hashPassword(user: User, res: Response) {
 
   bcrypt.genSalt(saltRounds, function (err: any, salt: any) {
     if (err) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        message:
-          StatusCodes.INTERNAL_SERVER_ERROR +
-          " error while generating the salt",
-      });
+      responseErrorWhileGeneratingToken(res);
       return;
     }
     bcrypt.hash(user.password, salt, async function (err: any, hash: any) {
       if (err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message:
-            StatusCodes.INTERNAL_SERVER_ERROR +
-            " error while generating the salt",
-        });
+        responseErrorWhileHashingToken(res);
         return;
       }
       user.password = hash;
@@ -68,18 +59,12 @@ export async function register(req: Request, res: Response) {
     `SELECT * FROM Public.users WHERE email like '${user.email}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
-        });
+        responseErrorDetectDb(res);
       } else {
         if (rowIsVoid(results.rows) === true) {
           hashPassword(user, res);
         } else {
-          res.status(StatusCodes.FORBIDDEN).json({
-            statusCode: StatusCodes.FORBIDDEN,
-            message: StatusCodes.FORBIDDEN + " your email already exists",
-          });
+          responseEmailAlreadyExist(res);
         }
       }
     }

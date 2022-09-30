@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1664469136483" clover="3.2.0">
-  <project timestamp="1664469136484" name="All files">
-    <metrics statements="298" coveredstatements="272" conditionals="57" coveredconditionals="36" methods="47" coveredmethods="47" elements="402" coveredelements="355" complexity="0" loc="298" ncloc="298" packages="7" files="26" classes="26"/>
+<coverage generated="1664544344511" clover="3.2.0">
+  <project timestamp="1664544344511" name="All files">
+    <metrics statements="354" coveredstatements="308" conditionals="63" coveredconditionals="36" methods="60" coveredmethods="53" elements="477" coveredelements="397" complexity="0" loc="354" ncloc="354" packages="8" files="31" classes="31"/>
     <package name="API_BackOffice">
       <metrics statements="17" coveredstatements="17" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
       <file name="app.ts" path="/home/kylian/Documents/my/API_BackOffice/app.ts">
@@ -25,8 +25,55 @@
         <line num="32" count="8" type="stmt"/>
       </file>
     </package>
+    <package name="API_BackOffice.Function.Response">
+      <metrics statements="29" coveredstatements="23" conditionals="0" coveredconditionals="0" methods="12" coveredmethods="6"/>
+      <file name="responseArticle.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Response/responseArticle.ts">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="responseDataBase.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Response/responseDataBase.ts">
+        <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="responseOk.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Response/responseOk.ts">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+      </file>
+      <file name="responseToken.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Response/responseToken.ts">
+        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="5" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="12" count="6" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="responseUser.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Response/responseUser.ts">
+        <metrics statements="13" coveredstatements="10" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="3"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="26" count="8" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="34" count="8" type="stmt"/>
+        <line num="35" count="1" type="stmt"/>
+        <line num="41" count="8" type="stmt"/>
+        <line num="42" count="1" type="stmt"/>
+      </file>
+    </package>
     <package name="API_BackOffice.Function.Utils">
-      <metrics statements="54" coveredstatements="52" conditionals="9" coveredconditionals="7" methods="9" coveredmethods="9"/>
+      <metrics statements="69" coveredstatements="53" conditionals="15" coveredconditionals="7" methods="10" coveredmethods="9"/>
       <file name="createRoutes.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Utils/createRoutes.ts">
         <metrics statements="14" coveredstatements="14" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
         <line num="1" count="8" type="stmt"/>
@@ -57,15 +104,15 @@
         <line num="2" count="8" type="stmt"/>
         <line num="4" count="8" type="stmt"/>
         <line num="5" count="4" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
-        <line num="9" count="3" type="stmt"/>
-        <line num="13" count="8" type="stmt"/>
-        <line num="14" count="3" type="stmt"/>
-        <line num="15" count="3" type="stmt"/>
-        <line num="17" count="3" type="stmt"/>
-        <line num="25" count="8" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="11" count="3" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="3" type="stmt"/>
+        <line num="19" count="3" type="stmt"/>
+        <line num="21" count="3" type="stmt"/>
+        <line num="29" count="8" type="stmt"/>
+        <line num="30" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
       </file>
       <file name="simpleCondition.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Utils/simpleCondition.ts">
         <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -75,26 +122,41 @@
         <line num="6" count="10" type="stmt"/>
       </file>
       <file name="verifToken.ts" path="/home/kylian/Documents/my/API_BackOffice/Function/Utils/verifToken.ts">
-        <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="4" methods="1" coveredmethods="1"/>
+        <metrics statements="34" coveredstatements="18" conditionals="12" coveredconditionals="4" methods="2" coveredmethods="1"/>
         <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
-        <line num="6" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
-        <line num="12" count="23" type="stmt"/>
-        <line num="13" count="23" type="cond" truecount="2" falsecount="0"/>
-        <line num="14" count="18" type="stmt"/>
-        <line num="15" count="18" type="cond" truecount="1" falsecount="1"/>
-        <line num="17" count="18" type="stmt"/>
-        <line num="18" count="12" type="stmt"/>
-        <line num="21" count="12" type="stmt"/>
-        <line num="24" count="5" type="stmt"/>
-        <line num="28" count="5" type="stmt"/>
-        <line num="31" count="6" type="cond" truecount="1" falsecount="1"/>
-        <line num="32" count="6" type="stmt"/>
-        <line num="36" count="6" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="8" type="stmt"/>
+        <line num="47" count="23" type="stmt"/>
+        <line num="48" count="23" type="cond" truecount="2" falsecount="0"/>
+        <line num="49" count="18" type="stmt"/>
+        <line num="50" count="18" type="cond" truecount="1" falsecount="1"/>
+        <line num="52" count="18" type="stmt"/>
+        <line num="53" count="12" type="stmt"/>
+        <line num="56" count="12" type="stmt"/>
+        <line num="59" count="5" type="stmt"/>
+        <line num="60" count="5" type="stmt"/>
+        <line num="63" count="6" type="cond" truecount="1" falsecount="1"/>
+        <line num="64" count="6" type="stmt"/>
+        <line num="65" count="6" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
       </file>
     </package>
     <package name="API_BackOffice.Function.checkParams">
@@ -116,26 +178,9 @@
       </file>
     </package>
     <package name="API_BackOffice.Middlewares.Articles">
-      <metrics statements="48" coveredstatements="43" conditionals="13" coveredconditionals="8" methods="11" coveredmethods="11"/>
+      <metrics statements="51" coveredstatements="46" conditionals="13" coveredconditionals="8" methods="11" coveredmethods="11"/>
       <file name="createArticle.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Articles/createArticle.ts">
-        <metrics statements="14" coveredstatements="13" conditionals="3" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
-        <line num="4" count="8" type="stmt"/>
-        <line num="8" count="2" type="stmt"/>
-        <line num="11" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="17" count="2" type="stmt"/>
-        <line num="27" count="8" type="stmt"/>
-        <line num="28" count="4" type="stmt"/>
-        <line num="29" count="4" type="stmt"/>
-        <line num="30" count="4" type="stmt"/>
-        <line num="31" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="39" count="2" type="stmt"/>
-      </file>
-      <file name="deleteArticle.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Articles/deleteArticle.ts">
-        <metrics statements="19" coveredstatements="16" conditionals="7" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <metrics statements="15" coveredstatements="14" conditionals="3" coveredconditionals="2" methods="3" coveredmethods="3"/>
         <line num="2" count="8" type="stmt"/>
         <line num="3" count="8" type="stmt"/>
         <line num="4" count="8" type="stmt"/>
@@ -143,18 +188,38 @@
         <line num="9" count="2" type="stmt"/>
         <line num="12" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="13" count="0" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="25" count="8" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="4" type="stmt"/>
+        <line num="28" count="4" type="stmt"/>
+        <line num="29" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+      </file>
+      <file name="deleteArticle.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Articles/deleteArticle.ts">
+        <metrics statements="21" coveredstatements="18" conditionals="7" coveredconditionals="4" methods="5" coveredmethods="5"/>
+        <line num="3" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
+        <line num="6" count="8" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="15" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="16" count="0" type="stmt"/>
         <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
         <line num="19" count="0" type="stmt"/>
-        <line num="24" count="2" type="stmt"/>
-        <line num="32" count="2" type="stmt"/>
-        <line num="35" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="50" count="8" type="stmt"/>
-        <line num="51" count="3" type="stmt"/>
-        <line num="52" count="3" type="stmt"/>
-        <line num="53" count="3" type="cond" truecount="1" falsecount="0"/>
-        <line num="54" count="2" type="stmt"/>
+        <line num="21" count="2" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="32" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="2" type="stmt"/>
+        <line num="41" count="8" type="stmt"/>
+        <line num="42" count="3" type="stmt"/>
+        <line num="43" count="3" type="stmt"/>
+        <line num="44" count="3" type="cond" truecount="1" falsecount="0"/>
+        <line num="45" count="2" type="stmt"/>
       </file>
       <file name="getArticles.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Articles/getArticles.ts">
         <metrics statements="15" coveredstatements="14" conditionals="3" coveredconditionals="2" methods="3" coveredmethods="3"/>
@@ -176,58 +241,63 @@
       </file>
     </package>
     <package name="API_BackOffice.Middlewares.Auth">
-      <metrics statements="119" coveredstatements="100" conditionals="35" coveredconditionals="21" methods="26" coveredmethods="26"/>
+      <metrics statements="128" coveredstatements="109" conditionals="35" coveredconditionals="21" methods="26" coveredmethods="26"/>
       <file name="deleteAccount.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Auth/deleteAccount.ts">
-        <metrics statements="29" coveredstatements="26" conditionals="11" coveredconditionals="8" methods="7" coveredmethods="7"/>
-        <line num="3" count="8" type="stmt"/>
+        <metrics statements="32" coveredstatements="29" conditionals="11" coveredconditionals="8" methods="7" coveredmethods="7"/>
         <line num="4" count="8" type="stmt"/>
+        <line num="5" count="8" type="stmt"/>
         <line num="6" count="8" type="stmt"/>
         <line num="7" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
-        <line num="10" count="8" type="stmt"/>
-        <line num="11" count="2" type="stmt"/>
-        <line num="14" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="29" count="8" type="stmt"/>
-        <line num="30" count="3" type="stmt"/>
-        <line num="34" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="40" count="2" type="stmt"/>
-        <line num="46" count="8" type="stmt"/>
-        <line num="47" count="3" type="stmt"/>
-        <line num="50" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="51" count="0" type="stmt"/>
-        <line num="56" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="57" count="0" type="stmt"/>
-        <line num="62" count="3" type="stmt"/>
-        <line num="69" count="8" type="stmt"/>
-        <line num="70" count="6" type="stmt"/>
-        <line num="71" count="6" type="stmt"/>
-        <line num="72" count="6" type="cond" truecount="1" falsecount="0"/>
-        <line num="73" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="74" count="1" type="stmt"/>
-        <line num="81" count="3" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="22" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="31" count="8" type="stmt"/>
+        <line num="32" count="3" type="stmt"/>
+        <line num="36" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="37" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="45" count="8" type="stmt"/>
+        <line num="46" count="3" type="stmt"/>
+        <line num="49" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="55" count="3" type="stmt"/>
+        <line num="62" count="8" type="stmt"/>
+        <line num="63" count="6" type="stmt"/>
+        <line num="64" count="6" type="stmt"/>
+        <line num="65" count="6" type="cond" truecount="1" falsecount="0"/>
+        <line num="66" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="67" count="1" type="stmt"/>
+        <line num="69" count="3" type="stmt"/>
       </file>
       <file name="login.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Auth/login.ts">
-        <metrics statements="17" coveredstatements="15" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="4"/>
+        <metrics statements="19" coveredstatements="17" conditionals="6" coveredconditionals="4" methods="4" coveredmethods="4"/>
         <line num="2" count="8" type="stmt"/>
         <line num="3" count="8" type="stmt"/>
         <line num="4" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
-        <line num="7" count="8" type="stmt"/>
+        <line num="8" count="8" type="stmt"/>
         <line num="9" count="8" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="14" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="15" count="1" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="14" count="8" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="20" count="1" type="stmt"/>
-        <line num="26" count="8" type="stmt"/>
-        <line num="27" count="2" type="stmt"/>
-        <line num="30" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="36" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="42" count="2" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="28" count="8" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+        <line num="32" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="2" type="stmt"/>
       </file>
       <file name="refreshAccessToken.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Auth/refreshAccessToken.ts">
         <metrics statements="10" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
@@ -243,73 +313,77 @@
         <line num="15" count="1" type="stmt"/>
       </file>
       <file name="register.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Auth/register.ts">
-        <metrics statements="32" coveredstatements="25" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="7"/>
+        <metrics statements="34" coveredstatements="27" conditionals="8" coveredconditionals="4" methods="7" coveredmethods="7"/>
         <line num="2" count="8" type="stmt"/>
         <line num="3" count="8" type="stmt"/>
         <line num="4" count="8" type="stmt"/>
-        <line num="5" count="8" type="stmt"/>
-        <line num="7" count="8" type="stmt"/>
-        <line num="10" count="2" type="stmt"/>
-        <line num="13" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="14" count="0" type="stmt"/>
+        <line num="9" count="8" type="stmt"/>
+        <line num="10" count="8" type="stmt"/>
+        <line num="11" count="8" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="19" count="2" type="cond" truecount="0" falsecount="1"/>
         <line num="20" count="0" type="stmt"/>
-        <line num="22" count="2" type="stmt"/>
-        <line num="25" count="2" type="stmt"/>
-        <line num="29" count="2" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="32" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="33" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="26" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="33" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="0" falsecount="1"/>
         <line num="39" count="0" type="stmt"/>
-        <line num="41" count="2" type="stmt"/>
-        <line num="42" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
-        <line num="51" count="2" type="stmt"/>
-        <line num="52" count="2" type="cond" truecount="1" falsecount="0"/>
-        <line num="53" count="2" type="stmt"/>
-        <line num="59" count="8" type="stmt"/>
-        <line num="60" count="3" type="stmt"/>
-        <line num="61" count="3" type="stmt"/>
-        <line num="67" count="3" type="stmt"/>
-        <line num="70" count="3" type="cond" truecount="1" falsecount="1"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="76" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="77" count="2" type="stmt"/>
-        <line num="79" count="1" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="42" count="2" type="stmt"/>
+        <line num="43" count="2" type="cond" truecount="1" falsecount="0"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="50" count="8" type="stmt"/>
+        <line num="51" count="3" type="stmt"/>
+        <line num="52" count="3" type="stmt"/>
+        <line num="58" count="3" type="stmt"/>
+        <line num="61" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="64" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="65" count="2" type="stmt"/>
+        <line num="67" count="1" type="stmt"/>
       </file>
       <file name="resetPassword.ts" path="/home/kylian/Documents/my/API_BackOffice/Middlewares/Auth/resetPassword.ts">
-        <metrics statements="31" coveredstatements="24" conditionals="9" coveredconditionals="4" methods="7" coveredmethods="7"/>
+        <metrics statements="33" coveredstatements="26" conditionals="9" coveredconditionals="4" methods="7" coveredmethods="7"/>
         <line num="2" count="8" type="stmt"/>
-        <line num="3" count="8" type="stmt"/>
         <line num="4" count="8" type="stmt"/>
         <line num="5" count="8" type="stmt"/>
         <line num="6" count="8" type="stmt"/>
-        <line num="8" count="8" type="stmt"/>
-        <line num="9" count="8" type="stmt"/>
-        <line num="12" count="2" type="stmt"/>
-        <line num="15" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="21" count="2" type="stmt"/>
-        <line num="31" count="2" type="stmt"/>
-        <line num="33" count="2" type="stmt"/>
-        <line num="34" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="35" count="0" type="stmt"/>
+        <line num="7" count="8" type="stmt"/>
+        <line num="12" count="8" type="stmt"/>
+        <line num="13" count="8" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="16" count="8" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="22" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="32" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="35" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="40" count="2" type="cond" truecount="0" falsecount="1"/>
         <line num="41" count="0" type="stmt"/>
-        <line num="43" count="2" type="stmt"/>
-        <line num="44" count="2" type="cond" truecount="0" falsecount="1"/>
-        <line num="45" count="0" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="44" count="2" type="stmt"/>
+        <line num="49" count="8" type="stmt"/>
+        <line num="50" count="4" type="stmt"/>
+        <line num="51" count="4" type="stmt"/>
+        <line num="52" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="53" count="2" type="stmt"/>
-        <line num="58" count="8" type="stmt"/>
-        <line num="59" count="4" type="stmt"/>
-        <line num="60" count="4" type="stmt"/>
-        <line num="61" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="56" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="2" type="cond" truecount="1" falsecount="1"/>
+        <line num="60" count="0" type="stmt"/>
         <line num="62" count="2" type="stmt"/>
-        <line num="65" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="66" count="0" type="stmt"/>
-        <line num="72" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="73" count="0" type="stmt"/>
-        <line num="78" count="2" type="stmt"/>
       </file>
     </package>
     <package name="API_BackOffice.Routes.Articles">

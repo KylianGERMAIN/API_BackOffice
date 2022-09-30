@@ -4,6 +4,13 @@ import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { verifToken } from "../../Function/Utils/verifToken";
 import { pool } from "../../Function/Utils/database";
 import { rowIsVoid } from "../../Function/Utils/simpleCondition";
+import {
+  responseErrorWhileGeneratingToken,
+  responseErrorWhileHashingToken,
+  responseUserNotFound,
+} from "../../Function/Response/responseUser";
+import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
+import { responseOK } from "../../Function/Response/responseOk";
 
 const bcrypt = require("bcrypt");
 dotenv.config();
@@ -13,15 +20,9 @@ function remplacePassword(password: string, token: any, res: Response) {
     `UPDATE public.users SET password = '${password}' WHERE id = '${token.payload.id}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message: StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
-        });
+        responseErrorDetectDb(res);
       } else {
-        res.status(StatusCodes.OK).json({
-          statusCode: StatusCodes.OK,
-          message: ReasonPhrases.OK,
-        });
+        responseOK(res);
       }
     }
   );
@@ -32,22 +33,12 @@ function hashPassword(password: string, token: any, res: Response) {
 
   bcrypt.genSalt(saltRounds, function (err: any, salt: any) {
     if (err) {
-      res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-        message:
-          StatusCodes.INTERNAL_SERVER_ERROR +
-          " error while generating the salt",
-      });
+      responseErrorWhileGeneratingToken(res);
       return;
     }
     bcrypt.hash(password, salt, async function (err: any, hash: any) {
       if (err) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-          statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-          message:
-            StatusCodes.INTERNAL_SERVER_ERROR +
-            " error while generating the salt",
-        });
+        responseErrorWhileHashingToken(res);
         return;
       }
       remplacePassword(hash, token, res);
@@ -63,17 +54,10 @@ export async function resetPassword(req: Request, res: Response) {
       `SELECT * FROM Public.users WHERE id = '${token.payload.id}'`,
       (error: any, results: { rows: any }) => {
         if (error) {
-          res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-            message:
-              StatusCodes.INTERNAL_SERVER_ERROR + " an error was detected",
-          });
+          responseErrorDetectDb(res);
         } else {
           if (rowIsVoid(results.rows) === true) {
-            res.status(StatusCodes.NOT_FOUND).json({
-              statusCode: StatusCodes.NOT_FOUND,
-              message: ReasonPhrases.NOT_FOUND + " User not found",
-            });
+            responseUserNotFound(res);
           } else {
             hashPassword(req.body.password, token, res);
           }
@@ -81,5 +65,4 @@ export async function resetPassword(req: Request, res: Response) {
       }
     );
   }
-
 }
