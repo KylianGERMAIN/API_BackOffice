@@ -27,10 +27,10 @@ export function ResponseErrorCreateArticle(res: Response) {
 }
 
 export function ResponseErrorSearchingArticle(res: Response) {
-  res.status(StatusCodes.UNAUTHORIZED).json({
-    statusCode: StatusCodes.UNAUTHORIZED,
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
     message:
-      StatusCodes.UNAUTHORIZED +
+      StatusCodes.INTERNAL_SERVER_ERROR +
       " an error is detected while searching for the article in the database",
   });
 }
