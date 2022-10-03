@@ -46,3 +46,39 @@ export function responseDeleteNotYourAccount(res: Response) {
       " you are trying to delete an account that is not yours",
   });
 }
+
+export function responseErrorDeletingAccount(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " error while deleting your account in the database",
+  });
+}
+
+export function responseErrorSearchingAccount(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " error while searching for your account in the database",
+  });
+}
+
+export function responseErrorAddingAccount(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " an error was detected when adding the user to the database",
+  });
+}
+
+export function responseErrorChangePassword(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " an error was detected when replacing the password in the database",
+  });
+}

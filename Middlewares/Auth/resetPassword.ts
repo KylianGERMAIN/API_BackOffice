@@ -5,11 +5,12 @@ import { verifToken } from "../../Function/Utils/verifToken";
 import { pool } from "../../Function/Utils/database";
 import { rowIsVoid } from "../../Function/Utils/simpleCondition";
 import {
+  responseErrorChangePassword,
+  responseErrorSearchingAccount,
   responseErrorWhileGeneratingToken,
   responseErrorWhileHashingToken,
   responseUserNotFound,
 } from "../../Function/Response/responseUser";
-import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
 import { responseOK } from "../../Function/Response/responseOk";
 
 const bcrypt = require("bcrypt");
@@ -20,7 +21,7 @@ function remplacePassword(password: string, token: any, res: Response) {
     `UPDATE public.users SET password = '${password}' WHERE id = '${token.payload.id}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        responseErrorDetectDb(res);
+        responseErrorChangePassword(res);
       } else {
         responseOK(res);
       }
@@ -54,7 +55,7 @@ export async function resetPassword(req: Request, res: Response) {
       `SELECT * FROM Public.users WHERE id = '${token.payload.id}'`,
       (error: any, results: { rows: any }) => {
         if (error) {
-          responseErrorDetectDb(res);
+          responseErrorSearchingAccount(res);
         } else {
           if (rowIsVoid(results.rows) === true) {
             responseUserNotFound(res);

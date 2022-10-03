@@ -1,10 +1,11 @@
 import express, { Express, Request, Response } from "express";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
 import {
   responseEmailAlreadyExist,
   responseErrorWhileGeneratingToken,
   responseErrorWhileHashingToken,
+  responseErrorSearchingAccount,
+  responseErrorAddingAccount,
 } from "../../Function/Response/responseUser";
 import { pool } from "../../Function/Utils/database";
 import { generateRefreshAcccesTokens } from "../../Function/Utils/generateToken";
@@ -17,7 +18,7 @@ function addUserToDb(user: User, res: Response) {
     `INSERT INTO public.users("id", "email", "password", "date") VALUES('${user.uid}', '${user.email}', '${user.password}', '${user.date}')`,
     (error: any) => {
       if (error) {
-        responseErrorDetectDb(res);
+        responseErrorAddingAccount(res);
         return false;
       }
       return true;
@@ -59,7 +60,7 @@ export async function register(req: Request, res: Response) {
     `SELECT * FROM Public.users WHERE email like '${user.email}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        responseErrorDetectDb(res);
+        responseErrorSearchingAccount(res);
       } else {
         if (rowIsVoid(results.rows) === true) {
           hashPassword(user, res);

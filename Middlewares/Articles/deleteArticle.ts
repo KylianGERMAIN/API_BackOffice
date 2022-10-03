@@ -1,6 +1,10 @@
 import express, { Express, Request, Response } from "express";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
-import { ResponseErrorCantDeleteArticle } from "../../Function/Response/responseArticle";
+import {
+  ResponseErrorCantDeleteArticle,
+  ResponseErrorNotFoundArticle,
+  ResponseErrorSearchingArticle,
+} from "../../Function/Response/responseArticle";
 import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
 import { responseOK } from "../../Function/Response/responseOk";
 import { pool } from "../../Function/Utils/database";
@@ -13,10 +17,10 @@ function checkArticleToDb(id: String, user_id: String, res: Response) {
     `SELECT * FROM Public.articles WHERE id = '${id}' AND user_id = '${user_id}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        responseErrorDetectDb(res);
+        ResponseErrorSearchingArticle(res);
       } else {
         if (rowIsVoid(results.rows) === true) {
-          ResponseErrorCantDeleteArticle(res);
+          ResponseErrorNotFoundArticle(res);
         } else {
           deleteArticleToDb(id, res);
         }
@@ -30,7 +34,7 @@ function deleteArticleToDb(id: String, res: Response) {
     `DELETE FROM public.articles WHERE "id" = '${id}'`,
     (error: any) => {
       if (error) {
-        responseErrorDetectDb(res);
+        ResponseErrorCantDeleteArticle(res);
       } else {
         responseOK(res);
       }

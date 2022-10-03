@@ -3,6 +3,7 @@ import { ReasonPhrases, StatusCodes } from "http-status-codes";
 import { responseErrorDetectDb } from "../../Function/Response/responseDataBase";
 import {
   responseBadPassword,
+  responseErrorSearchingAccount,
   responseUserNotFound,
 } from "../../Function/Response/responseUser";
 import { pool } from "../../Function/Utils/database";
@@ -30,7 +31,7 @@ export async function login(req: Request, res: Response) {
     `SELECT * FROM Public.users WHERE email like '${req.body.email}'`,
     (error: any, results: { rows: any }) => {
       if (error) {
-        responseErrorDetectDb(res);
+        responseErrorSearchingAccount(res);
       } else {
         if (rowIsVoid(results.rows) === true) {
           responseUserNotFound(res);
