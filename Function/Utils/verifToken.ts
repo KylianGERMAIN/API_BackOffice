@@ -19,7 +19,7 @@ export async function verifRefreshToken(
       var token = authorization.split(" ");
       if (token[0] != "Bearer") throw { message: "jwt invalid" };
       else {
-        jwt.verify(token[1], process.env.REFRESH_TOKEN_SECRET);
+        jwt.verify(token[1], process.env.REFRESH_TOKEN_SECRET as string);
         const decodedToken = jwt.decode(token[1], {
           complete: true,
         });

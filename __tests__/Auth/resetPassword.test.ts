@@ -2,32 +2,6 @@ import request from "supertest";
 import app from "../../app";
 
 describe("RESET PASSWORD", () => {
-  test("reset password simply", (done) => {
-    request(app)
-      .post(`/auth/resetpassword`)
-      .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
-      .send({
-        password: "jadore_krakow",
-      })
-      .end((err: any, res: any) => {
-        if (err) return done(err);
-        expect(res._body.statusCode).toEqual(200);
-        expect(res._body.message).toMatch("OK");
-        request(app)
-          .post(`/auth/resetpassword`)
-          .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
-          .send({
-            password: process.env.PASSWORD_LOGIN_TEST,
-          })
-          .end((err: any, ress: any) => {
-            if (err) return done(err);
-            expect(ress._body.statusCode).toEqual(200);
-            expect(ress._body.message).toMatch("OK");
-            done();
-          });
-      });
-  });
-
   test("reset password with nothing", (done) => {
     request(app)
       .post(`/auth/resetpassword`)
