@@ -2,6 +2,28 @@ import request from "supertest";
 import app from "../../app";
 
 describe("REGISTER", () => {
+  test("register simply", (done) => {
+    request(app)
+      .post(`/auth/register`)
+      .send({
+        email: process.env.REGISTER_TEST,
+        password: process.env.PASSWORD_REGISTER_TEST,
+      })
+      .end(async (err: any, res: any) => {
+        if (err) return done(err);
+        expect(res.statusCode).toEqual(201);
+        var token = res._body.accessToken;
+        await request(app)
+          .post(`/auth/deleteAccount`)
+          .set("Authorization", "Bearer " + token)
+          .send({
+            email: process.env.REGISTER_TEST,
+            password: process.env.PASSWORD_REGISTER_TEST,
+          });
+        done();
+      });
+  });
+
   test("register with an existing address", (done) => {
     request(app)
       .post(`/auth/register`)
