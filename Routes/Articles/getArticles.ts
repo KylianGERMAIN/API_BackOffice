@@ -11,12 +11,7 @@ const routes = [
   {
     type: "get",
     route: "/getArticles",
-    middlewares: [
-      checkSchema({
-        // id: checkId,
-      }),
-      checkValidator(),
-    ],
+    middlewares: [checkSchema({}), checkValidator()],
     next: getArticles,
   },
 ];

@@ -8,15 +8,16 @@ import { Article } from "../../Interfaces/Articles";
 
 function addArticleToDb(article: Article, res: Response) {
   pool.query(
-    `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.uid}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
+    `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.id}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
     (error: any) => {
       if (error) {
+        console.log(article);
         ResponseErrorCreateArticle(res);
       } else {
         res.status(StatusCodes.OK).json({
           statusCode: StatusCodes.OK,
           message: ReasonPhrases.OK,
-          id: article.uid,
+          id: article.id,
         });
       }
     }
@@ -29,7 +30,7 @@ export async function createArticle(req: Request, res: Response) {
   var token = await JSON.parse(element);
   if (element != '{ "error": "error" }') {
     const article: Article = {
-      uid: uuid.v4(),
+      id: uuid.v4(),
       user_id: token.payload.id,
       title: req.body.title,
       content: req.body.content,

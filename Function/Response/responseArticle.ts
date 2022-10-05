@@ -34,3 +34,20 @@ export function ResponseErrorSearchingArticle(res: Response) {
       " an error is detected while searching for the article in the database",
   });
 }
+
+
+export function responseArticleNotFound(res: Response) {
+  res.status(StatusCodes.NOT_FOUND).json({
+    statusCode: StatusCodes.NOT_FOUND,
+    message: StatusCodes.NOT_FOUND + " article not found",
+  });
+}
+
+export function responseErrorUpdateArticle(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " an error was detected when updating the article in the database",
+  });
+}

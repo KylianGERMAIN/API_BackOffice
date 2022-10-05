@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">41.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>5/12</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/4</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">41.66% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>12/12</span>
+                <span class='fraction'>5/12</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -100,37 +100,37 @@
 <a name='L35'></a><a href='#L35'>35</a>
 <a name='L36'></a><a href='#L36'>36</a>
 <a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,24 +138,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">&nbsp;
 const jwt = require('jsonwebtoken');
 &nbsp;
-export function generateAccessToken(username: any) {
-  return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {
+export function <span class="fstat-no" title="function not covered" >generateAccessToken(</span>username: any) {
+<span class="cstat-no" title="statement not covered" >  return jwt.sign(username, process.env.ACCESS_TOKEN_SECRET, {</span>
+    expiresIn: "1800s",
+  });
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >generateRefreshToken(</span>username: any) {
+<span class="cstat-no" title="statement not covered" >  return jwt.sign(username, process.env.REFRESH_TOKEN_SECRET, {</span>
     expiresIn: "2y",
   });
 }
 &nbsp;
-export function generateRefreshToken(username: any) {
-  return jwt.sign(username, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: "2y",
-  });
-}
 &nbsp;
+export function <span class="fstat-no" title="function not covered" >generateRefreshAcccesTokens(</span>user: any) {
+  var accesstoken = <span class="cstat-no" title="statement not covered" >generateAccessToken({ email: user.email, id: user.id });</span>
+  var refreshtoken = <span class="cstat-no" title="statement not covered" >generateRefreshToken({ email: user.email, id: user.id })</span>
 &nbsp;
-export function generateRefreshAcccesTokens(user: any) {
-  var accesstoken = generateAccessToken({ email: user.email, id: user.id });
-  var refreshtoken = generateRefreshToken({ email: user.email, id: user.id })
-&nbsp;
-  return {
+<span class="cstat-no" title="statement not covered" >  return {</span>
     'refreshToken': refreshtoken,
     'accessToken': accesstoken,
     'expires_in': '1800s',
@@ -163,10 +163,10 @@ export function generateRefreshAcccesTokens(user: any) {
   }
 }
 &nbsp;
-export function generateAccesToken(user: any) {
-  var accesstoken = generateAccessToken({ email: user.email, id: user.id });
+export function <span class="fstat-no" title="function not covered" >generateAccesToken(</span>user: any) {
+  var accesstoken = <span class="cstat-no" title="statement not covered" >generateAccessToken({ email: user.email, id: user.id });</span>
 &nbsp;
-  return {
+<span class="cstat-no" title="statement not covered" >  return {</span>
     'accessToken': accesstoken,
     'expires_in': '1800s',
     'tokenType': 'Bearer'
@@ -178,7 +178,7 @@ export function generateAccesToken(user: any) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-04T12:31:49.727Z
+                at 2022-10-05T09:21:31.299Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

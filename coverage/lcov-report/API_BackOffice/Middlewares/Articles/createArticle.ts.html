@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">31.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/15</span>
+                <span class='fraction'>5/16</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">31.25% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/15</span>
+                <span class='fraction'>5/16</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -103,12 +103,13 @@
 <a name='L38'></a><a href='#L38'>38</a>
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
-<a name='L41'></a><a href='#L41'>41</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -117,6 +118,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -128,11 +130,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -153,28 +155,29 @@ import { Article } from "../../Interfaces/Articles";
 &nbsp;
 function <span class="fstat-no" title="function not covered" >addArticleToDb(</span>article: Article, res: Response) {
 <span class="cstat-no" title="statement not covered" >  pool.query(</span>
-    `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.uid}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
+    `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.id}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
 <span class="fstat-no" title="function not covered" >    (e</span>rror: any) =&gt; {
 <span class="cstat-no" title="statement not covered" >      if (error) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(article);</span>
 <span class="cstat-no" title="statement not covered" >        ResponseErrorCreateArticle(res);</span>
       } else {
 <span class="cstat-no" title="statement not covered" >        res.status(StatusCodes.OK).json({</span>
           statusCode: StatusCodes.OK,
           message: ReasonPhrases.OK,
-          id: article.uid,
+          id: article.id,
         });
       }
     }
   );
 }
 &nbsp;
-export async function createArticle(req: Request, res: Response) {
-  var uuid = require("uuid");
-  var element = await verifToken(req.headers.authorization, res);
-  var token = await JSON.parse(element);
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (element != '{ "error": "error" }') {
+export async function <span class="fstat-no" title="function not covered" >createArticle(</span>req: Request, res: Response) {
+  var uuid = <span class="cstat-no" title="statement not covered" >require("uuid");</span>
+  var element = <span class="cstat-no" title="statement not covered" >await verifToken(req.headers.authorization, res);</span>
+  var token = <span class="cstat-no" title="statement not covered" >await JSON.parse(element);</span>
+<span class="cstat-no" title="statement not covered" >  <span class="missing-if-branch" title="if path not taken" >I</span>if (element != '{ "error": "error" }') {</span>
     const article: Article = <span class="cstat-no" title="statement not covered" >{</span>
-      uid: uuid.v4(),
+      id: uuid.v4(),
       user_id: token.payload.id,
       title: req.body.title,
       content: req.body.content,
@@ -190,7 +193,7 @@ export async function createArticle(req: Request, res: Response) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-10-04T12:31:49.727Z
+                at 2022-10-05T09:21:31.299Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
