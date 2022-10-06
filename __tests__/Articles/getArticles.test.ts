@@ -13,6 +13,18 @@ describe("GET ARTICLES", () => {
       });
   });
 
+  test("get articles with search simply", (done) => {
+    request(app)
+      .get(`/articles/getArticles?search=krako`)
+      .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
+      .end((err: any, res: any) => {
+        if (err) return done(err);
+        expect(res.statusCode).toEqual(200);
+        expect(res._body.data.length).toBeGreaterThan(0);
+        done();
+      });
+  });
+
   test("get articles with nothing", (done) => {
     request(app)
       .get(`/articles/getArticles`)

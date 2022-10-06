@@ -28,6 +28,6 @@ app.use(
   refreshAccessToken,
   deleteAccount
 );
-app.use("/articles", createArticle, deleteArticle, getArticles, updateArticle);
+app.use("/articles", createArticle, updateArticle, deleteArticle, getArticles);
 
 export default app;
