@@ -38,6 +38,20 @@ describe("GET ARTICLES", () => {
       });
   });
 
+  test("get articles with not number in pagination", (done) => {
+    request(app)
+      .get(`/articles/getArticles?search=titre&pagination=abc`)
+      .set("Authorization", "Bearer " + process.env.VALIDE_LOGIN_TOKEN)
+      .end((err: any, res: any) => {
+        if (err) return done(err);
+        expect(res._body.statusCode).toEqual(403);
+        expect(res._body.message).toMatch(
+          "403 pagination is not a number or is inferior at 1"
+        );
+        done();
+      });
+  });
+
   test("get articles with nothing", (done) => {
     request(app)
       .get(`/articles/getArticles`)
