@@ -1,6 +1,16 @@
 import { Response } from "express";
 import { StatusCodes } from "http-status-codes";
 
+
+export function responseArticle(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " error when calculating the number of articles",
+  });
+}
+
 export function ResponseErrorNotFoundArticle(res: Response) {
   res.status(StatusCodes.NOT_FOUND).json({
     statusCode: StatusCodes.NOT_FOUND,
@@ -35,7 +45,6 @@ export function ResponseErrorSearchingArticle(res: Response) {
   });
 }
 
-
 export function responseArticleNotFound(res: Response) {
   res.status(StatusCodes.NOT_FOUND).json({
     statusCode: StatusCodes.NOT_FOUND,
@@ -49,5 +58,22 @@ export function responseErrorUpdateArticle(res: Response) {
     message:
       StatusCodes.INTERNAL_SERVER_ERROR +
       " an error was detected when updating the article in the database",
+  });
+}
+
+export function responseErrorPagination(res: Response) {
+  res.status(StatusCodes.FORBIDDEN).json({
+    statusCode: StatusCodes.FORBIDDEN,
+    message:
+      StatusCodes.FORBIDDEN + " pagination is not a number or is inferior at 1",
+  });
+}
+
+export function responseErrorCountArticle(res: Response) {
+  res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+    statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+    message:
+      StatusCodes.INTERNAL_SERVER_ERROR +
+      " error when calculating the number of articles",
   });
 }
