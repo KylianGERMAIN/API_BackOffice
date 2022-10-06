@@ -11,7 +11,6 @@ function addArticleToDb(article: Article, res: Response) {
     `INSERT INTO public.articles("id", "user_id", "title", "content", "date") VALUES('${article.id}', '${article.user_id}', '${article.title}', '${article.content}', '${article.date}')`,
     (error: any) => {
       if (error) {
-        console.log(article);
         ResponseErrorCreateArticle(res);
       } else {
         res.status(StatusCodes.OK).json({

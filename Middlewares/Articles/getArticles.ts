@@ -19,7 +19,6 @@ export async function getArticlesToDb(req: Request, res: Response, id: string) {
       return;
     }
     var pagination = 10 * Number(req.query.pagination) - 10;
-    console.log(pagination);
     actualSql = `SELECT * FROM public.articles order by "date" limit  10 OFFSET ${pagination};`;
   } else {
     actualSql = `SELECT * FROM public.articles order by "date" limit  10 OFFSET 0;`;
@@ -70,7 +69,6 @@ export async function getArticlesToDbWithSearch(
       return;
     }
     var pagination = 10 * Number(req.query.pagination) - 10;
-    console.log(pagination);
     actualSql = `SELECT * FROM Public.articles WHERE title ILIKE '%${req.query.search}%' AND "user_id" = '${id}' order by "date" limit 10 OFFSET ${pagination};`;
   } else {
     actualSql = `SELECT * FROM Public.articles WHERE title ILIKE '%${req.query.search}%' AND "user_id" = '${id}' order by "date" limit 10 OFFSET 0`;
