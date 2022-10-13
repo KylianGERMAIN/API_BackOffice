@@ -19,9 +19,9 @@ export async function getArticlesToDb(req: Request, res: Response, id: string) {
       return;
     }
     var pagination = 10 * Number(req.query.pagination) - 10;
-    actualSql = `SELECT * FROM public.articles order by "date" limit  10 OFFSET ${pagination};`;
+    actualSql = `SELECT * FROM public.articles WHERE "user_id" = '${id}' order by "date" limit  10 OFFSET ${pagination};`;
   } else {
-    actualSql = `SELECT * FROM public.articles order by "date" limit  10 OFFSET 0;`;
+    actualSql = `SELECT * FROM public.articles WHERE "user_id" = '${id}' order by "date" limit  10 OFFSET 0;`;
   }
 
   await pool.query(
@@ -101,7 +101,6 @@ export async function getArticlesToDbWithSearch(
     }
   );
 }
-
 
 export async function getArticles(req: Request, res: Response) {
   var element = await verifToken(req.headers.authorization, res);

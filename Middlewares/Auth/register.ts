@@ -15,7 +15,7 @@ const bcrypt = require("bcrypt");
 
 function addUserToDb(user: User, res: Response) {
   pool.query(
-    `INSERT INTO public.users("id", "email", "password", "date") VALUES('${user.uid}', '${user.email}', '${user.password}', '${user.date}')`,
+    `INSERT INTO public.users("id", "email", "password", "date") VALUES('${user.id}', '${user.email}', '${user.password}', '${user.date}')`,
     (error: any) => {
       if (error) {
         responseErrorAddingAccount(res);
@@ -51,7 +51,7 @@ function hashPassword(user: User, res: Response) {
 export async function register(req: Request, res: Response) {
   var uuid = require("uuid");
   const user: User = {
-    uid: uuid.v4(),
+    id: uuid.v4(),
     email: req.body.email,
     password: req.body.password,
     date: Date.now().toString(),
