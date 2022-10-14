@@ -31,8 +31,8 @@ describe("REFRESH ACCESS TOKEN", () => {
       .set("Authorization", "Bearer " + process.env.EXPIRED_LOGIN_TOKEN)
       .end((err: any, res: any) => {
         if (err) return done(err);
-        expect(res._body.statusCode).toEqual(401);
-        expect(res._body.message).toMatch("401 jwt expired");
+        expect(res.statusCode).toEqual(200);
+        expect(res._body.tokenType).toMatch("Bearer");
         done();
       });
   });
